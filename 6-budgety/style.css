@@ -33,8 +33,9 @@ body {
 
 .top {
     height: 40vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(back.png);
-    background-size: cover;
+    background-color: #ffd000;
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(back.png);
+    background-size: cover; */
     background-position: center;
     position: relative;
 }
@@ -45,7 +46,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #fff;
+    color: #000;
 }
 
 .budget__title {
