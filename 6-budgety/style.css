@@ -26,13 +26,13 @@ body {
 .right { float: right; }
 .red { color: #FF5049 !important; }
 .red-focus:focus { border: 1px solid #FF5049 !important; }
-/* .red-focus { background-color: #fdb9b9 !important; } */
+/* .red-focus { background-color: #ffcbcb !important; } */
 
 /**********************************************
-*** TOP PART
+*** SIDEBAR
 **********************************************/
 
-.top {
+.sidebar {
     background-color: #ffd000;
     background-image: url(budgie-icon.png);
     background-repeat: no-repeat;
@@ -120,7 +120,7 @@ body {
 
 
 /**********************************************
-*** BOTTOM PART
+*** MAIN
 **********************************************/
 
 /***** FORM *****/

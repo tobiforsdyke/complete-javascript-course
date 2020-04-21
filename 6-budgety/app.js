@@ -174,7 +174,8 @@ var UIController = (function() {
         dec = numSplit[1];
         // type === 'exp' ? sign = '-' : sign = '+';
         // return type + ' ' + int + dec;
-        return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
+        return (type === 'exp' ? '- £' : '+ £') + ' ' + int + '.' + dec;
+        // return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
     };
 
     var nodeListForEach = function(list, callback) {
