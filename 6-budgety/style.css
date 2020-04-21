@@ -26,6 +26,7 @@ body {
 .right { float: right; }
 .red { color: #FF5049 !important; }
 .red-focus:focus { border: 1px solid #FF5049 !important; }
+/* .red-focus { background-color: #fdb9b9 !important; } */
 
 /**********************************************
 *** TOP PART
@@ -33,9 +34,16 @@ body {
 
 .top {
     background-color: #ffd000;
+    background-image: url(budgie-icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-position-x: center; */
+    /* background-position-y: top; */
+    background-position-y: 20px;
+    /* background-size: contain; */
     /* background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(back.png);
     background-size: cover; */
-    background-position: center;
+    /* background-position: center; */
     position: relative;
     float: left;
     width: 30%;
@@ -160,7 +168,7 @@ body {
     font-size: 35px;
     background: none;
     border: none;
-    color: #28B9B5;
+    color: #24a876;
     cursor: pointer;
     display: inline-block;
     vertical-align: middle;
@@ -174,7 +182,7 @@ body {
 .add__description:focus,
 .add__value:focus {
     outline: none;
-    border: 1px solid #28B9B5;
+    border: 1px solid #24a876;
 }
 
 .add__btn:focus { outline: none; }
@@ -205,7 +213,7 @@ h2 {
     margin-bottom: 15px;
 }
 
-.icome__title { color: #28B9B5; }
+.income__title { color: #24a876; }
 .expenses__title { color: #FF5049; }
 
 .item {
@@ -239,7 +247,7 @@ h2 {
 
 .income .item__value,
 .income .item__delete--btn {
-    color: #28B9B5;
+    color: #24a876;
 }
 
 .expenses .item__value,
