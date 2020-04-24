@@ -1,0 +1,22 @@
+{
+  "name": "resipee",
+  "version": "1.0.0",
+  "description": "Recipee project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "recipe",
+    "recipes",
+    "resipee"
+  ],
+  "author": "Tobi Forsdyke",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.43.0"
+  },
+  "dependencies": {
+    "jquery": "^3.5.0"
+  }
+}
