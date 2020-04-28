@@ -1,29 +1,40 @@
 /* export default 'I am an exported string.'; */
 
 import axios from 'axios';
+import {app_key_spoonacular, app_key_edamam, app_id_edamam} from '../config';
 
+// Spoonacular API:
 export default class Search {
     constructor(query) {
         this.query = query;
     }
     async getResults() {
         try {
-            const app_key = 'c90e8353cf544fcaac521bc1b917d9f8'
-            const res = await axios(`https://api.spoonacular.com/recipes/search?query=${this.query}&apiKey=${app_key}`);
+            const res = await axios(`https://api.spoonacular.com/recipes/search?query=${this.query}&apiKey=${app_key_spoonacular}`);
             this.result = res.data.results;
             // console.log(this.result);
         } catch (error) {
             alert(error);
         }
     }
-}
+};
 
-/* async function getResults(query) {
-    const proxy = 'https://cors-anywhere.herokuapp.com/';
-    const key = '1a28000d4cmsh606fcb213176242p165086jsn05f07b1b93c2';
-    const res = await axios(`${proxy}http://api.yummly.com/v1/api/recipes?key=${key}&?q=${query}`);
-    console.log(res);
-} */
+/* // Edamam API:
+export default class Search {
+    constructor(query) {
+        this.query = query;
+    }
+    async getResults() {
+        try {
+            const res = await axios(`https://api.edamam.com/search?q=${query}&app_id=${app_id_edamam}&app_key=${app_key_edamam}`);
+            this.result = res.data.hits;
+            console.log(this.result);
+        } catch (error) {
+            alert(error);
+        }
+    }
+};
+// getResults('pizza'); */
 
 /* // Edamam API:
 async function getResults(query) {
@@ -36,7 +47,7 @@ async function getResults(query) {
     } catch (error) {
         alert(error);
     }
-}
+};
 getResults('pizza');
 
 // Path: https://api.edamam.com/search
@@ -53,5 +64,5 @@ async function getResults(query) {
     } catch (error) {
         alert(error);
     }
-}
+};
 getResults('pizza'); */
