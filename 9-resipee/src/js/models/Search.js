@@ -1,7 +1,7 @@
 /* export default 'I am an exported string.'; */
 
 import axios from 'axios';
-import {app_key_spoonacular, app_key_edamam, app_id_edamam} from '../config';
+import {app_key_spoonacular, numberOfResults, app_key_edamam, app_id_edamam} from '../config';
 
 // Spoonacular API:
 export default class Search {
@@ -10,7 +10,7 @@ export default class Search {
     }
     async getResults() {
         try {
-            const res = await axios(`https://api.spoonacular.com/recipes/search?query=${this.query}&apiKey=${app_key_spoonacular}`);
+            const res = await axios(`https://api.spoonacular.com/recipes/search?query=${this.query}&number=${numberOfResults}&apiKey=${app_key_spoonacular}`);
             this.result = res.data.results;
             // console.log(this.result);
         } catch (error) {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {app_key_spoonacular, app_key_edamam, app_id_edamam} from '../config';
+import {app_key_spoonacular, numberOfResults, app_key_edamam, app_id_edamam} from '../config';
 
 export default class Recipe {
     constructor(id) {

@@ -59,7 +59,7 @@ const renderRecipe = recipe => {
 };
 
 // type = 'prev' or 'next'
-const createButton = (page,type) => `
+const createButton = (page, type) => `
     <button class="btn-inline results__btn--${type}" data-pagetogoto=${type === 'prev' ? page - 1 : page + 1}>
         <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
         <svg class="search__icon">
@@ -88,7 +88,7 @@ const renderButtons = (page, numResults, resultsPerPage) => {
     elements.searchResPages.insertAdjacentHTML('afterbegin', button);
 };
 
-export const renderResults = (recipes, page = 1, resultsPerPage = 6) => {
+export const renderResults = (recipes, page = 1, resultsPerPage = 10) => {
     // Render results of current page
     const start = (page - 1) * resultsPerPage;
     const end = page * resultsPerPage;
