@@ -72,8 +72,10 @@ const controlRecipe = async () => {
         // Create new recipe object
         state.recipe = new Recipe(id);
         try {
-            // Get recipe data
+            // Get recipe data (and parse ingredients):
             await state.recipe.getRecipe();
+            // PARSE FUNCTION - NOT NEEDED FOR SPOONACULAR:
+            // state.recipe.parseIngredients();
             // Calculate servings and time functions (or data)
             state.recipe.calcTime();
             state.recipe.calcServings();
