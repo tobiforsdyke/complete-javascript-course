@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {app_key_spoonacular, numberOfResults, app_key_edamam, app_id_edamam} from '../config';
+import {app_key_spoonacular, app_key_spoonacular2, numberOfResults, app_key_edamam, app_id_edamam} from '../config';
 
 export default class Recipe {
     constructor(id) {
@@ -7,7 +7,7 @@ export default class Recipe {
     }
     async getRecipe() {
         try {
-            const res = await axios(`https://api.spoonacular.com/recipes/${this.id}/information?&apiKey=${app_key_spoonacular}`);
+            const res = await axios(`https://api.spoonacular.com/recipes/${this.id}/information?&apiKey=${app_key_spoonacular2}`);
             this.title = res.data.title;
             this.credits = res.data.creditsText;
             this.img = res.data.image;
@@ -16,7 +16,11 @@ export default class Recipe {
             this.ingredients = res.data.extendedIngredients;
             this.servings = res.data.servings;
             this.cookingtime = res.data.cookingMinutes;
-            console.log(res);
+            // console.log(res);
+            // Loops through and console logs all the ingredients:
+            for (let i = 0; i < this.ingredients.length; i++) {
+                console.log(this.ingredients[i].measures.metric);
+            };
         } catch (error) {
             console.log(error);
             alert('Something went wrong...');
@@ -33,8 +37,9 @@ export default class Recipe {
         this.servings = 4;
     }
     parseIngredients() {
-        const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'millilitres', 'millilitre', 'milliliters', 'milliliter', 'grams', 'gram'];
-        const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound', 'ml', 'ml', 'ml', 'ml', 'g', 'g'];
+        const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'millilitres', 'millilitre', 'milliliters', 'milliliter'];
+        const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound', 'ml', 'ml', 'ml', 'ml'];
+        const units = [...unitsShort, 'kg', 'g'];
         const newIngredients = this.ingredients.map(el => {
             // Make units uniform
             let ingredient = el.toLowerCase;
@@ -45,7 +50,7 @@ export default class Recipe {
             ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');
             // Parse ingredients into count, unit and ingredient
             const arrIng = ingredient.split(' ');
-            const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2));
+            const unitIndex = arrIng.findIndex(el2 => units.includes(el2));
             let objIng;
             if (unitIndex > -1) {
                 // There is a unit
@@ -81,5 +86,35 @@ export default class Recipe {
             return objIng;
         });
         this.ingredients = newIngredients;
+    }
+    parseIngredientsSpoonacular() {
+        // const unitsLong = this.ingredients.measures.metric.unitLong;
+        // const unitsShort = this.ingredients.measures.metric.unitShort;
+        /* const newIngredients = this.ingredients.map(el => {
+            let objIng;
+            // Loops through and console logs all the ingredients:
+            for (let i = 0; i < this.ingredients.length; i++) {
+                console.log(this.ingredients[i].measures.metric);
+                objIng = {
+                    count: this.ingredients[i].measures.metric.amount,
+                    unit: this.ingredients[i].measures.metric.unitShort,
+                    ingredient: this.ingredients[i]
+                };
+            return objIng;
+            };
+        }); */
+        const newIngredients = this.ingredients.forEach(function(el) {
+            let objIng;
+            // Loops through and console logs all the ingredients:
+            console.log(this.ingredients[i].measures.metric);
+            objIng = {
+                count: this.ingredients[i].measures.metric.amount,
+                unit: this.ingredients[i].measures.metric.unitShort,
+                ingredient: this.ingredients[i]
+            }
+            return objIng;
+        });
+        this.ingredients = newIngredients;
+        console.log(this.ingredients);
     }
 };
