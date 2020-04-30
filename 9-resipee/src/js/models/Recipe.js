@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {app_key_spoonacular, app_key_spoonacular2, numberOfResults, app_key_edamam, app_id_edamam} from '../config';
+import {app_key_spoonacular, numberOfResults, app_key_edamam, app_id_edamam} from '../config';
 
 export default class Recipe {
     constructor(id) {
@@ -7,7 +7,7 @@ export default class Recipe {
     }
     async getRecipe() {
         try {
-            const res = await axios(`https://api.spoonacular.com/recipes/${this.id}/information?&apiKey=${app_key_spoonacular2}`);
+            const res = await axios(`https://api.spoonacular.com/recipes/${this.id}/information?&apiKey=${app_key_spoonacular}`);
             this.title = res.data.title;
             this.credits = res.data.creditsText;
             this.img = res.data.image;
@@ -15,27 +15,33 @@ export default class Recipe {
             this.instructions = res.data.instructions;
             this.ingredients = res.data.extendedIngredients;
             this.servings = res.data.servings;
-            this.cookingtime = res.data.cookingMinutes;
+            this.time = res.data.readyInMinutes;
+            // this.name = res.data.ingredients.name;
+            // this.amount = res.data.ingredients.amount;
+            // this.unit = res.data.ingredients.unit;
             // console.log(res);
             // Loops through and console logs all the ingredients:
-            for (let i = 0; i < this.ingredients.length; i++) {
-                console.log(this.ingredients[i].measures.metric);
-            };
+            // for (let i = 0; i < this.ingredients.length; i++) {
+            //     console.log(this.ingredients[i].measures.metric);
+            // };
         } catch (error) {
             console.log(error);
-            alert('Something went wrong...');
+            alert('Error in getRecipe Recipe.js...');
         }
-    }
+    };
 
     calcTime() {
         // Assuming that we need 15 mins for each 3 ingredients
-        const numIng = this.ingredients.length;
+        /* const numIng = this.ingredients.length;
         const periods = Math.ceil(numIng / 3);
-        this.time = periods * 15;
-    }
+        this.time = periods * 15; */
+        // Just using the Spoonacular data:
+        this.time = this.time;
+    };
     calcServings() {
-        this.servings = 4;
-    }
+        this.servings = this.servings;
+        // Just using the Spoonacular data:
+    };
     parseIngredients() {
         const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'millilitres', 'millilitre', 'milliliters', 'milliliter'];
         const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound', 'ml', 'ml', 'ml', 'ml'];
@@ -86,8 +92,19 @@ export default class Recipe {
             return objIng;
         });
         this.ingredients = newIngredients;
-    }
+    };
     parseIngredientsSpoonacular() {
+        const newIngredients = this.ingredients.map(el => {
+            let objIng;
+            objIng = {
+                count: this.ingredients[i].measures.metric.amount,
+                unit: this.ingredients[i].measures.metric.unitShort,
+                ingredient: this.ingredients[i]
+            };
+            return objIng;
+        });
+        this.ingredients = newIngredients;
+        console.log(this.ingredients);
         // const unitsLong = this.ingredients.measures.metric.unitLong;
         // const unitsShort = this.ingredients.measures.metric.unitShort;
         /* const newIngredients = this.ingredients.map(el => {
@@ -103,7 +120,7 @@ export default class Recipe {
             return objIng;
             };
         }); */
-        const newIngredients = this.ingredients.forEach(function(el) {
+        /* const newIngredients = this.ingredients.forEach(function(el) {
             let objIng;
             // Loops through and console logs all the ingredients:
             console.log(this.ingredients[i].measures.metric);
@@ -113,8 +130,28 @@ export default class Recipe {
                 ingredient: this.ingredients[i]
             }
             return objIng;
-        });
+        }); */
+        /* for (let i = 0; i < this.ingredients.length; i++) {
+            let newIngredients;
+            // Loops through and console logs all the ingredients:
+            console.log(this.ingredients[i].measures.metric);
+            newIngredients = {
+                count: this.ingredients[i].measures.metric.amount,
+                unit: this.ingredients[i].measures.metric.unitShort,
+                ingredient: this.ingredients[i]
+            }
+            return newIngredients;
+        };
         this.ingredients = newIngredients;
-        console.log(this.ingredients);
-    }
+        console.log(this.ingredients); */
+    };
+    updateServings(type) {
+        // Servings
+        const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
+        // Ingredients
+        this.ingredients.forEach(ing => {
+            ing.count *= (newServings / this.servings);
+        });
+        this.servings = newServings;
+    };
 };

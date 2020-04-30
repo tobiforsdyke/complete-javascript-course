@@ -72,6 +72,8 @@ const controlRecipe = async () => {
         // Prepare UI for changes
         recipeView.clearRecipe();
         renderLoader(elements.recipe);
+        // Highlight selected search item
+        if (state.search) searchView.highlightSelected(id);
         // Create new recipe object
         state.recipe = new Recipe(id);
         try {
@@ -81,6 +83,7 @@ const controlRecipe = async () => {
             // state.recipe.parseIngredients();
             // PARSE INGREDIENTS FOR SPOONACULAR:
             // state.recipe.parseIngredientsSpoonacular();
+            
             // Calculate servings and time functions (or data)
             state.recipe.calcTime();
             state.recipe.calcServings();
@@ -90,7 +93,7 @@ const controlRecipe = async () => {
             clearLoader();
             recipeView.renderRecipe(state.recipe);
         } catch (err) {
-            alert('Error processing recipe...');
+            alert('Error in recipe controller...');
         }
     }
 };
@@ -99,3 +102,19 @@ const controlRecipe = async () => {
 window.addEventListener('hashchange', controlRecipe);
 window.addEventListener('load', controlRecipe); */
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+
+// Handling recipe button clicks
+elements.recipe.addEventListener('click', e => {
+    if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+        // Decrease button is clicked
+        if (state.recipe.servings > 1) {
+            state.recipe.updateServings('dec');
+            recipeView.updateServingsIngredients(state.recipe);
+        }
+    } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+        // Increase button is clicked
+        state.recipe.updateServings('inc');
+        recipeView.updateServingsIngredients(state.recipe);
+    }
+    console.log(state.recipe);
+});
