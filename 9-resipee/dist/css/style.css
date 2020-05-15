@@ -2,7 +2,7 @@
   --dark-green: #2db420;
   --light-green: #b3fb89;
   --green-hover: #228b19;
-  --green-gradient: linear-gradient(to right bottom, var(--light-green), var(--dark-green));
+  --resipee-gradient: linear-gradient(to right bottom, var(--light-green), var(--dark-green));
   --old-gradient: linear-gradient(to right bottom, #FBDB89, #F48982);
 }
 
@@ -32,8 +32,7 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: #655A56;
-  /* background-image: var(--old-gradient); */
-  background-image: var(--green-gradient);
+  background-image: var(--resipee-gradient);
   background-size: cover;
   background-repeat: no-repeat;
   min-height: calc(100vh - 2 * 4vw); }
@@ -56,8 +55,7 @@ body {
       border-radius: 0; } }
 
 .btn, .btn-small, .btn-small:link, .btn-small:visited {
-  /* background-image: var(--old-gradient); */
-  background-image: var(--green-gradient);
+  background-image: var(--resipee-gradient);
   border-radius: 10rem;
   border: none;
   text-transform: uppercase;
@@ -143,7 +141,8 @@ body {
   text-transform: uppercase;
   margin-bottom: 2.5rem;
   text-align: center;
-  transform: skewY(-3deg); }
+  /* transform: skewY(-3deg);  */
+}
 
 .copyright {
   color: #968B87;
@@ -277,8 +276,7 @@ body {
       position: absolute;
       top: 0;
       left: 0;
-      /* background-image: var(--old-gradient); */
-      background-image: var(--green-gradient);
+      /* background-image: var(--resipee-gradient); */
       opacity: .4; }
     .results__fig img,
     .likes__fig img {
@@ -333,8 +331,7 @@ body {
       position: absolute;
       top: 0;
       left: 0;
-      /* background-image: var(--old-gradient); */
-      background-image: var(--green-gradient);
+      /* background-image: var(--resipee-gradient); */
       opacity: .6; }
   .recipe__img {
     width: 100%;
@@ -357,8 +354,7 @@ body {
       -webkit-box-decoration-break: clone;
       box-decoration-break: clone;
       padding: 1.3rem 2rem;
-      /* background-image: var(--old-gradient); */
-      background-image: var(--green-gradient); }
+      background-image: var(--resipee-gradient); }
   .recipe__details {
     display: flex;
     align-items: center;
@@ -390,8 +386,7 @@ body {
     opacity: 1;
     transform: translateY(0); }
   .recipe__love {
-    /* background-image: var(--old-gradient); */
-    background-image: var(--green-gradient);
+    background-image: var(--resipee-gradient);
     border-radius: 50%;
     border: none;
     cursor: pointer;
